@@ -21,7 +21,8 @@
     "format": "ts-standard --fix src/**/*.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "start": "NODE_ENV=production node dist/app.js"
+    "start": "NODE_ENV=production node dist/app.js",
+    "deploy": "sh -x deploy.sh"
   },
   "dependencies": {
     "@influxdata/influxdb-client": "^1.22",
