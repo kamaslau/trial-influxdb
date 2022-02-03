@@ -10,12 +10,26 @@
     "name": "Kamas Lau",
     "email": "kamaslau@outlook.com"
   },
-  "main": "app.js",
+  "engines": {
+    "node": "^16 || >=16"
+  },
+  "main": "src/app.ts",
   "scripts": {
     "docker:up": "docker compose up -d",
     "docker:down": "docker compose down --volumes",
-    "start": "node .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "cross-env nodemon",
+    "format": "ts-standard --fix src/**/*.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "NODE_ENV=production node dist/app.js"
+  },
+  "dependencies": {
+    "@influxdata/influxdb-client": "^1.22",
+    "@influxdata/influxdb-client-apis": "^1.22",
+    "dotenv": "^15"
+  },
+  "devDependencies": {
+    "@tsconfig/node16": "latest"
   },
   "repository": {
     "type": "git",
