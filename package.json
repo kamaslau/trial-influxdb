@@ -27,10 +27,16 @@
   "dependencies": {
     "@influxdata/influxdb-client": "^1.22",
     "@influxdata/influxdb-client-apis": "^1.22",
-    "dotenv": "^15"
+    "dotenv": "^16"
   },
   "devDependencies": {
-    "@tsconfig/node16": "latest"
+    "@tsconfig/node16": "latest",
+    "@types/node": "latest",
+    "cross-env": "latest",
+    "nodemon": "latest",
+    "ts-node": "latest",
+    "ts-standard": "latest",
+    "typescript": "latest"
   },
   "repository": {
     "type": "git",
