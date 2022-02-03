@@ -1,6 +1,6 @@
 # trial-influxdb
 
-InfluxDB 选型/快速试用。
+InfluxDB 选型/快速试用/微服务 Starter。
 
 ## 路径
 
