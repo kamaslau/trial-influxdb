@@ -10,7 +10,7 @@ cp .env_template .env
 # echo 'SOME_YAML_STRING' >> .env  # 如有必要，可追加配置信息
 # sudo nano .env # 如有必要，可调整具体配置参数
 pnpm i
-pnpm run build
+pnpm build
 
 # Process Manager
 pm2 delete "trial-influxdb"
