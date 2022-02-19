@@ -14,7 +14,7 @@ pnpm run build
 
 # Process Manager
 pm2 delete "trial-influxdb"
-pm2 start npm --watch --name "trial-influxdb" -- start
+pm2 start pnpm --watch --name "trial-influxdb" -- start
 pm2 save
 
 # EOL
