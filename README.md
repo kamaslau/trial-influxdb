@@ -14,12 +14,16 @@ InfluxDB 选型/快速试用/微服务 Starter。
 | ------ | -------- | ------- | ------ | ------------------------------------------------------- |
 | admin  | 12345678 | default | mydb   | 从 WEB 控制台的 `Data->API Tokens` 获取 "admin's Token" |
 
-## Docker Cli
+## 部署
 
-快速启动单项容器，不涉及存储容器、网络等配置。
-
-```shell
+```bash
 docker run -p 8086:8086 -d --restart always --name trial-influxdb influxdb
+
+cp .env.sample .env
+pnpm i
+
+pnpm start:dev # NODE_ENV=development
+pnpm start # NODE_ENV=production
 ```
 
 ## 参考资料

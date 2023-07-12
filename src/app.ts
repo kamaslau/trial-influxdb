@@ -1,9 +1,10 @@
-import dotenv from 'dotenv'
+import * as dotenv from 'dotenv'
 import { InfluxDB, Point } from '@influxdata/influxdb-client'
 
-// 载入.env环境配置文件
+// 加载环境变量
 dotenv.config()
-// console.log('process.env: ', process.env)
+
+globalThis.isDev = process.env.NODE_ENV !== 'production'
 
 // You can generate an API token from the "API Tokens Tab" in the UI
 const org = process.env.INFLUX_ORG ?? ''
@@ -44,15 +45,15 @@ from(bucket: "${bucket}")
   |> filter(fn: (r) => r["_field"] == "used_percent")
 `
 queryApi.queryRows(query, {
-  next (row, tableMeta) {
+  next(row, tableMeta) {
     const o = tableMeta.toObject(row)
     console.log(`${o._time as string} ${o._measurement as string}: ${o._field as string}=${o._value as string}`)
   },
-  error (error) {
+  error(error) {
     console.error(error)
     console.log('Finished ERROR')
   },
-  complete () {
+  complete() {
     console.log('Finished SUCCESS')
   }
 })
