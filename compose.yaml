@@ -1,0 +1,28 @@
+volumes:
+  influxdb_data:
+
+networks:
+  frontend:
+  backend:
+
+services:
+  influxdb:
+    container_name: influxdb
+    image: influxdb:3-core
+    restart: always
+    networks:
+      - backend
+      - frontend
+    env_file: .env
+    ports:
+      - ${PORT-8181}:8181
+    volumes:
+      - type: volume
+        source: influxdb_data
+        target: /var/lib/influxdb3
+    command:
+      - influxdb3
+      - serve
+      - --node-id=node0
+      - --object-store=file
+      - --data-dir=/var/lib/influxdb3
