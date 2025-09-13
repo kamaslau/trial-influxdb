@@ -1,3 +1,5 @@
+name: trial-influxdb
+
 volumes:
   influxdb_data:
 
@@ -9,11 +11,10 @@ services:
   influxdb:
     container_name: influxdb
     image: influxdb:3-core
-    restart: always
+    restart: unless-stopped
     networks:
       - backend
       - frontend
-    env_file: .env
     ports:
       - ${PORT-8181}:8181
     volumes:
@@ -25,4 +26,14 @@ services:
       - serve
       - --node-id=node0
       - --object-store=file
-      - --data-dir=/var/lib/influxdb3
+      - --data-dir=/var/lib/influxdb3/data
+  ui:
+    depends_on:
+      - influxdb
+    container_name: influxdb_ui
+    image: influxdata/influxdb3-ui:latest
+    restart: unless-stopped
+    networks:
+      - frontend
+    ports:
+      - ${PORT_UI-8888}:80

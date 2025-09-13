@@ -5,16 +5,19 @@ Trial or micro-service unit of [InfluxDB](https://docs.influxdata.com/).
 ## Service Endpoints
 
 - Database http://localhost:8181
+- UI http://localhost:8888
 
 ## Default Account
 
-启动数据库后，通过 `http://localhost:8181` 配置 WEB 控制台管理用户名密码等信息，并获取默认 TOKEN。
+| DATABASE | TOKEN                                                   |
+| -------- | ------------------------------------------------------- |
+| mydb     | docker exec -it influxdb influxdb3 create token --admin |
 
-建议设置如下，其中 ORG、Bucket 若自定义则需要更新 `.env` 文件中的 `INFLUXDB_` 同名变量值：
+To add a server in UI, go to Configure Servers page → the Add Server button
 
-| Username | Password | ORG     | BUCKET | TOKEN                                                   |
-| -------- | -------- | ------- | ------ | ------------------------------------------------------- |
-| admin    | 12345678 | default | mydb   | 从 WEB 控制台的 `Data->API Tokens` 获取 "admin's Token" |
+- Server Name: YOU_NAME_IT
+- Server URL: http://influxdb:8181
+- Token: as instructed already
 
 ## Usage
 
@@ -25,6 +28,8 @@ Trial or micro-service unit of [InfluxDB](https://docs.influxdata.com/).
 cp .env.sample .env
 # Start services
 docker compose up -d
+# Create an admin token
+docker exec -it influxdb influxdb3 create token --admin
 ```
 
 Update existing composed containers with latest images:
@@ -43,6 +48,9 @@ docker exec -it trial-influxdb bash
 
 # Create an admin token
 docker exec -it influxdb influxdb3 create token --admin
+
+# Create new database (Write admin token to env variable first)
+docker exec -it influxdb influxdb3 create database test
 ```
 
 ## 参考资料
